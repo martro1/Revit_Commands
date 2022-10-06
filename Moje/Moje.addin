@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<!--
+	  <AddIn Type="Command">
+    <Text>Command Moje</Text>
+    <Description>Some description for Moje</Description>
+    <Assembly>Moje.dll</Assembly>
+    <FullClassName>Moje.Command</FullClassName>
+    <ClientId>445494ee-be9f-416b-898c-68d8091e3ad2</ClientId>
+    <VendorId>com.typepad.thebuildingcoder</VendorId>
+    <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+  </AddIn>
+	-->
+
+  <AddIn Type="Application">
+    <Name>Moje</Name>
+    <Assembly>Moje.dll</Assembly>
+    <FullClassName>Moje.ExternalApplication</FullClassName>
+    <ClientId>91535763-E555-4A4D-A1D1-798BF4DACB5C</ClientId>
+    <VendorId>com.typepad.thebuildingcoder</VendorId>
+    <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+  </AddIn>
+</RevitAddIns>

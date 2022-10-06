@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+      None
+    </ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D9A31394-788C-42E5-9C5E-6B27B319DD72}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Moje</RootNamespace>
+    <AssemblyName>Moje</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProgramW6432)\Autodesk\Revit 2022\Revit.exe</StartProgram>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProgramW6432)\Autodesk\Revit 2022\Revit.exe</StartProgram>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="RevitAPI">
+      <HintPath>D:\Program Files\Autodesk\Revit 2022\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>D:\Program Files\Autodesk\Revit 2022\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\builtInParamsForElement.cs" />
+    <Compile Include="Commands\CreateDoor.cs" />
+    <Compile Include="Commands\CreateFamilyInstanceFurniture.cs" />
+    <Compile Include="Commands\CreateTextNote.cs" />
+    <Compile Include="Commands\CreateDirectShape.cs" />
+    <Compile Include="Commands\CreateTopo.cs" />
+    <Compile Include="Commands\DeleteElement.cs" />
+    <Compile Include="Commands\FanilyTypesAndParameters.cs" />
+    <Compile Include="Commands\FilElemColl.cs" />
+    <Compile Include="Commands\FloorSelectionFilter.cs" />
+    <Compile Include="Commands\GetLocation.cs" />
+    <Compile Include="Commands\HostFaces.cs" />
+    <Compile Include="Commands\iFailurePreprocessor.cs" />
+    <Compile Include="Commands\MyForm.cs" />
+    <Compile Include="Commands\NearestColumn.cs" />
+    <Compile Include="Commands\RotateElement.cs" />
+    <Compile Include="Commands\RotateWall.cs" />
+    <Compile Include="Commands\SelectedElements.cs" />
+    <Compile Include="Commands\SelectEdge.cs" />
+    <Compile Include="Commands\SelectElementWithFilter.cs" />
+    <Compile Include="Commands\Selectface.cs" />
+    <Compile Include="Commands\setParamForGenericAnnotations.cs" />
+    <Compile Include="Commands\WallCreate.cs" />
+    <Compile Include="Commands\WallSelectionFilter.cs" />
+    <Compile Include="Commands\WriteReadTextFile.cs" />
+    <Compile Include="ExternalApplication.cs" />
+    <Compile Include="myNewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="myNewForm.Designer.cs">
+      <DependentUpon>myNewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Moje.addin" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="myNewForm.resx">
+      <DependentUpon>myNewForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RevitHelp\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if exist "$(AppData)\Autodesk\REVIT\Addins\2022" copy "$(ProjectDir)*.addin" "$(AppData)\Autodesk\REVIT\Addins\2022"
+if exist "$(AppData)\Autodesk\REVIT\Addins\2022" copy "$(ProjectDir)$(OutputPath)*.dll" "$(AppData)\Autodesk\REVIT\Addins\2022"
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Target Name="AfterClean">
+    <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2022\Moje.addin" />
+    <Delete Files="$(AppData)\Autodesk\REVIT\Addins\2022\Moje.dll" />
+  </Target>
+</Project>
